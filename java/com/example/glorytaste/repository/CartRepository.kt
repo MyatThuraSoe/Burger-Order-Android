@@ -15,12 +15,16 @@ object CartRepository {
             cartItems.remove(item.id)
             menuItemsMap.remove(item.id)
         }
-        // You can also add logic to store this in Room database
     }
 
     // Get the quantity of a specific item in the cart
     fun getItemQuantity(itemId: String): Int {
         return cartItems[itemId] ?: 0
+    }
+
+    // Get all items currently in the cart
+    fun getCartItems(): List<MenuItem> {
+        return menuItemsMap.values.toList()
     }
 
     // Calculate the total amount in the cart

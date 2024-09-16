@@ -19,4 +19,9 @@ object RetrofitInstance {
     val menuApiService: MenuApiService by lazy {
         retrofit.create(MenuApiService::class.java)
     }
+
+    // Create and provide OrderApiService instance
+    val orderApiService: OrderApiService by lazy {
+        retrofit.create(OrderApiService::class.java)
+    }
 }

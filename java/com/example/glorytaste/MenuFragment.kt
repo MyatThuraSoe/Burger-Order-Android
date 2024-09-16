@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,7 +33,7 @@ class MenuFragment : Fragment(), MenuAdapter.OnCartItemChangedListener {
         menuRecyclerView.adapter = menuAdapter
 
         // Initialize total amount TextView
-        totalAmountTextView = view.findViewById(R.id.totalAmount)
+        totalAmountTextView = view.findViewById(R.id.totalAmountInMenu)
 
         // Fetch and display menu items
         fetchMenuItems()
@@ -43,6 +42,13 @@ class MenuFragment : Fragment(), MenuAdapter.OnCartItemChangedListener {
         val backButton: ImageView = view.findViewById(R.id.menuBackButton)
         backButton.setOnClickListener {
             val action = MenuFragmentDirections.actionMenuFragmentToHomeFragment()
+            findNavController().navigate(action)
+        }
+
+        // Go to CartFragment
+        val goToCart: TextView = view.findViewById(R.id.totalAmountInMenu)
+        goToCart.setOnClickListener {
+            val action = MenuFragmentDirections.actionMenuFragmentToCartFragment()
             findNavController().navigate(action)
         }
 
@@ -71,4 +77,3 @@ class MenuFragment : Fragment(), MenuAdapter.OnCartItemChangedListener {
         totalAmountTextView.text = "Total: $$total"
     }
 }
-
