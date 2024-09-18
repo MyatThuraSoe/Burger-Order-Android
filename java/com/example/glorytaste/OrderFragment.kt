@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +19,7 @@ import com.example.glorytaste.api.RetrofitInstance
 import com.example.glorytaste.data.CartItem
 import com.example.glorytaste.data.MenuItem
 import com.example.glorytaste.data.Order
+import com.example.glorytaste.data.OrderDatabase
 import com.example.glorytaste.repository.CartRepository
 import kotlinx.coroutines.launch
 
@@ -54,56 +56,14 @@ class OrderFragment : Fragment() {
         view.findViewById<Button>(R.id.orderButton).setOnClickListener {
             submitOrder()
         }
+
+        val orderBackButton: ImageView = view.findViewById(R.id.orderBackButton)
+        orderBackButton.setOnClickListener{
+            findNavController().navigate(OrderFragmentDirections.actionOrderFragmentToCartFragment())
+        }
+
     }
 
-//    private fun submitOrder() {
-//        // Show progress bar
-//        view?.findViewById<ProgressBar>(R.id.order_progressbar)?.visibility = View.VISIBLE
-//
-//        val userName = view?.findViewById<EditText>(R.id.order_input_name)?.text.toString()
-//        val userEmail = view?.findViewById<EditText>(R.id.order_input_email)?.text.toString()
-//        val userPhone = view?.findViewById<EditText>(R.id.order_input_phone)?.text.toString()
-//        val userAddress = view?.findViewById<EditText>(R.id.order_input_address)?.text.toString()
-//
-//        val orderData = Order(
-//            name = userName,
-//            email = userEmail,
-//            address = userAddress,
-//            phone = userPhone,
-//            session = "someSessionId", // Add appropriate session ID
-//            cart = cartItems.map {
-//                CartItem(
-//                    itemId = it.id,
-//                    name = it.name,
-//                    quantity = CartRepository.getItemQuantity(it.id),
-//                    price = it.price.toDouble()
-//                )
-//            },
-//            totalCost = totalAmount.toString()
-//        )
-//
-//        // Send orderData to the server and store it in the local database
-//        lifecycleScope.launch {
-//            try {
-//                val response = RetrofitInstance.orderApiService.postOrder(orderData)
-//                // Hide progress bar
-//                view?.findViewById<ProgressBar>(R.id.order_progressbar)?.visibility = View.GONE
-//                if (response.isSuccessful) {
-//                    // Show success alert
-//                    showAlert("Order submitted successfully!")
-//                    // Navigate to HomeFragment
-//                    findNavController().navigate(OrderFragmentDirections.actionOrderFragmentToHomeFragment())
-//                } else {
-//                    showAlert("Failed to submit order!")
-//                }
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//                // Hide progress bar
-//                view?.findViewById<ProgressBar>(R.id.order_progressbar)?.visibility = View.GONE
-//                showAlert("Error occurred while submitting order!")
-//            }
-//        }
-//    }
     private fun submitOrder() {
         // Show progress bar
         view?.findViewById<ProgressBar>(R.id.order_progressbar)?.visibility = View.VISIBLE
@@ -141,6 +101,9 @@ class OrderFragment : Fragment() {
                 view?.findViewById<ProgressBar>(R.id.order_progressbar)?.visibility = View.GONE
 
                 if (response.isSuccessful) {
+                    // Save order to Room database
+                    saveOrderLocally(orderData)
+
                     // Show success alert
                     showAlert("Order submitted successfully!")
                     // Navigate to HomeFragment
@@ -159,7 +122,18 @@ class OrderFragment : Fragment() {
         }
     }
 
-
+    private fun saveOrderLocally(order: Order) {
+        lifecycleScope.launch {
+            try {
+                val orderDao = OrderDatabase.getInstance(requireContext()).orderDao()
+                orderDao.insertOrder(order)
+                Log.d("OrderFragment", "Order saved locally")
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("OrderFragment", "Failed to save order locally: ${e.message}")
+            }
+        }
+    }
 
     private fun showAlert(message: String) {
         // Display alert message

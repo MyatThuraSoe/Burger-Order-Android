@@ -13,7 +13,7 @@ data class Order(
     val phone: String,
     val session: String,
     val totalCost: String,
-    val date: String = System.currentTimeMillis().toString(), // Store timezone
+    val date: Long = System.currentTimeMillis(), // Store timezone as timestamp
     @TypeConverters(CartItemConverter::class)
     val cart: List<CartItem>
 )

@@ -4,56 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/lighter_grey"
     tools:context=".HomeFragment">
 
     <!-- Top Bar -->
+
+    <!-- Main Content -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/white"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
             android:layout_marginStart="20dp"
-            android:text="Welcome"
-            android:textColor="@color/black"
-            android:textSize="18sp"
+            android:src="@drawable/burgerlogo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/welcome_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Welcome"
+            android:textColor="@color/web_orange"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/search_icon"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
             android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/noti_icon"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat="@drawable/searchicon1" />
+            app:srcCompat="@drawable/search2" />
 
         <ImageView
             android:id="@+id/noti_icon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
             android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat="@drawable/notiicon1" />
+            app:srcCompat="@drawable/noti3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Main Content -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/topBar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:background="@color/light_light_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,8 +82,8 @@
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:scaleType="centerCrop"
                 android:layout_marginBottom="16dp"
+                android:scaleType="centerCrop"
                 app:srcCompat="@drawable/home_page_banner" />
 
             <!-- See All Items Text -->
@@ -75,47 +91,163 @@
                 android:id="@+id/txt_see_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_medium"
                 android:text="See All Items"
-                android:textSize="16sp"
                 android:textAlignment="textEnd"
-                android:layout_marginBottom="8dp" />
+                android:textSize="16sp" />
+
 
             <!-- GridLayout -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Image 1 -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="150dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="5dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="10dp"
+                        app:cardBackgroundColor="@android:color/white"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/fresh_burger" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Image 2 -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="150dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="5dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="10dp"
+                        app:cardBackgroundColor="@android:color/white"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/triple_beef_burger" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Image 3 -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="150dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="5dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="8dp"
+                        app:cardBackgroundColor="@android:color/white"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/burger1" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Image 4 -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="150dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="5dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="10dp"
+                        app:cardBackgroundColor="@android:color/white"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/imageView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/burger2" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Image 5 -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="150dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="5dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="10dp"
+                        app:cardBackgroundColor="@android:color/white"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/imageView7"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/beef_sandwich" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                android:columnCount="2">
 
                 <!-- CardViews for Cart, Menu, etc. -->
                 <!-- Menu Card -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/homeMenuCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    app:cardElevation="4dp"
                     android:layout_columnWeight="1"
-                    android:id="@+id/homeMenuCard"
-                    android:padding="16dp">
+                    android:layout_margin="8dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="12dp"
+                    android:backgroundTint="@color/white"
+                    app:cardElevation="12dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/white"
+                        android:gravity="center"
                         android:orientation="horizontal"
-                        android:padding="5dp"
-                        android:gravity="center">
+                        android:padding="5dp">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:src="@drawable/home_menu" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/roboto_medium"
                             android:text="Menu"
-                            android:textSize="16sp"
-                            android:layout_marginTop="8dp"/>
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -123,59 +255,78 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    app:cardElevation="4dp"
                     android:layout_columnWeight="1"
-                    android:padding="16dp">
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="12dp"
+                    android:background="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:id="@+id/homeCartCard"
+                    app:cardElevation="12dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:gravity="center"
+                        android:orientation="horizontal"
                         android:padding="5dp">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="5dp"
                             android:src="@drawable/home_cart" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/roboto_medium"
                             android:text="Cart"
-                            android:textSize="16sp"
-                            android:layout_marginTop="8dp"/>
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <!-- History Card -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/home_to_order_history"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    app:cardElevation="4dp"
                     android:layout_columnWeight="1"
-                    android:padding="16dp">
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="12dp"
+                    android:background="@color/white"
+                    android:backgroundTint="@color/white"
+                    app:cardElevation="12dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
                         android:orientation="horizontal"
-                        android:padding="5dp"
-                        android:gravity="center">
+                        android:padding="5dp">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:src="@drawable/home_list" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/roboto_medium"
                             android:text="History"
-                            android:textSize="16sp"
-                            android:layout_marginTop="8dp"/>
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -183,30 +334,38 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    app:cardElevation="4dp"
                     android:layout_columnWeight="1"
-                    android:padding="16dp">
+                    android:layout_margin="8dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="12dp"
+                    android:backgroundTint="@color/white"
+                    app:cardElevation="12dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="5dp"
                         android:layout_gravity="center"
-                        android:gravity="center">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/profileicon" />
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/info" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/roboto_medium"
                             android:text="About us"
-                            android:textSize="16sp"
-                            android:layout_marginTop="8dp"/>
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 

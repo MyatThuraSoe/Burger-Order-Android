@@ -20,9 +20,11 @@
 
         <ImageView
             android:id="@+id/cartBackButton"
-            android:layout_width="40dp"
-            android:layout_height="50dp"
-            android:src="@drawable/backbutton"
+            android:layout_width="35dp"
+            android:layout_height="31dp"
+            android:src="@drawable/back3"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:contentDescription="Back"
 
             />
@@ -35,8 +37,10 @@
             android:gravity="center"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="40dp"
+            android:fontFamily="@font/roboto_medium"
+            android:textStyle="bold"
             android:text="Cart"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textColor="@color/black" />
 
     </LinearLayout>
@@ -62,14 +66,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/white"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:padding="16dp">
+        android:padding="5dp">
 
         <Button
             android:id="@+id/cashoutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cashout ($0.00)"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/web_orange"
             android:textSize="18sp" />
 
     </LinearLayout>

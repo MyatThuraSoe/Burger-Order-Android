@@ -34,6 +34,17 @@ class HomeFragment : Fragment() {
             navigateToMenuFragment()
         }
 
+        val orderHistoryCardView: CardView = view.findViewById(R.id.home_to_order_history)
+        orderHistoryCardView.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToOrderHistoryFragment())
+        }
+
+        val homeCartCard: CardView = view.findViewById(R.id.homeCartCard)
+        homeCartCard.setOnClickListener{
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCartFragment())
+        }
+
+
         return view
     }
 
