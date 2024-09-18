@@ -5,52 +5,48 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-
-import android.widget.TextView
-import androidx.cardview.widget.CardView
-
 import androidx.navigation.fragment.findNavController
+import com.example.glorytaste.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
+
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-        // Find the "See All Items" TextView
-        val seeAllItemsTextView: TextView = view.findViewById(R.id.txt_see_menu)
-        // Set a click listener on "See All Items" TextView
-        seeAllItemsTextView.setOnClickListener {
+        // Set click listeners using DataBinding
+        binding.txtSeeMenu.setOnClickListener {
             navigateToMenuFragment()
         }
 
-        // Example: Find the CardView for a specific menu item
-        val menuCardView: CardView = view.findViewById(R.id.homeMenuCard) // Replace with the actual ID in fragment_home.xml
-        // Set a click listener on the CardView
-        menuCardView.setOnClickListener {
+        binding.homeMenuCard.setOnClickListener {
             navigateToMenuFragment()
         }
 
-        val orderHistoryCardView: CardView = view.findViewById(R.id.home_to_order_history)
-        orderHistoryCardView.setOnClickListener {
+        binding.homeToOrderHistory.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToOrderHistoryFragment())
         }
 
-        val homeCartCard: CardView = view.findViewById(R.id.homeCartCard)
-        homeCartCard.setOnClickListener{
+        binding.homeCartCard.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCartFragment())
         }
-
 
         return view
     }
 
     private fun navigateToMenuFragment() {
-        // Use the Navigation component to navigate to MenuFragment
         val action = HomeFragmentDirections.actionHomeFragmentToMenuFragment()
         findNavController().navigate(action)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
