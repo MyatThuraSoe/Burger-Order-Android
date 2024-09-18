@@ -9,5 +9,13 @@
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="colorAccent">@color/white</item>
+        <!-- Make the status bar icons and text appear in dark mode -->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 
 </resources>
